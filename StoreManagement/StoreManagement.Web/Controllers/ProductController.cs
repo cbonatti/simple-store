@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreManagement.Core.Commands;
 using StoreManagement.Core.Responses;
 using StoreManagement.Core.Services.Interfaces;
 using StoreManagement.Infra;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace StoreManagement.Web.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _service;
@@ -24,12 +27,12 @@ namespace StoreManagement.Web.Controllers
         public async Task<Result<IEnumerable<ProductResponse>>> GetAll() => await _service.GetAll();
 
         [HttpPost]
-        public async Task<Result<ProductResponse>> Post([FromBody]Core.Commands.AddProductCommand fornecedor) => await _service.Add(fornecedor);
+        public async Task<Result<ProductResponse>> Post([FromBody]AddProductCommand fornecedor) => await _service.Add(fornecedor);
 
         [HttpPut]
-        public async Task<Result<ProductResponse>> Put([FromBody]Core.Commands.UpdateProductCommand fornecedor) => await _service.Update(fornecedor);
+        public async Task<Result<ProductResponse>> Put([FromBody]UpdateProductCommand fornecedor) => await _service.Update(fornecedor);
 
         [HttpDelete, Route("{id}")]
-        public async Task<Result<ProductResponse>> Delete(Guid id) => await _service.Delete(new Core.Commands.DeleteProductCommand() { Id = id });
+        public async Task<Result<ProductResponse>> Delete(Guid id) => await _service.Delete(new DeleteProductCommand() { Id = id });
     }
 }
