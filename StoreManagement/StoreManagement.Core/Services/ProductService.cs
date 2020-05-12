@@ -17,8 +17,11 @@ namespace StoreManagement.Core.Services
 {
     public class ProductService : ServiceBase<Product, ProductResponse>, IProductService
     {
-        public ProductService(IRepositoryAsync<Product> repository) : base(repository)
+        private readonly IProductCommunicationService communicationService;
+
+        public ProductService(IRepositoryAsync<Product> repository, IProductCommunicationService communicationService) : base(repository)
         {
+            this.communicationService = communicationService;
         }
 
         public async Task<Result<ProductResponse>> Get(Guid id)
@@ -46,15 +49,7 @@ namespace StoreManagement.Core.Services
             var product = command.ToEntity();
 
             product = await AddAsync(product);
-
-            using (var httpClient = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync("http://localhost:5002/api/product", content))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
+            communicationService.Post(product);
 
             return new Result<ProductResponse>(ProductResponse.ToResponse(product));
         }
@@ -72,15 +67,7 @@ namespace StoreManagement.Core.Services
                 .SetName(command.Name);
 
             await UpdateAsync(product);
-
-            using (var httpClient = new HttpClient())
-            {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PutAsync("http://localhost:5002/api/product", content))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
+            communicationService.Put(product);
 
             return new Result<ProductResponse>(ProductResponse.ToResponse(product));
         }
@@ -91,14 +78,7 @@ namespace StoreManagement.Core.Services
             if (!validationResult.Success)
                 return validationResult;
             await RemoveAsync(command.Id);
-
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.DeleteAsync($"http://localhost:5002/api/product/{command.Id}"))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
+            communicationService.Delete(command.Id);
 
             return new Result<ProductResponse>();
         }

@@ -3,6 +3,7 @@ using StoreConsumer.Domain;
 using StoreConsumer.DTOs;
 using StoreConsumer.Infra.Data.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace StoreConsumer.Controllers
@@ -19,11 +20,10 @@ namespace StoreConsumer.Controllers
         }
 
         [HttpGet]
-        public async Task<bool> Teste()
+        public async Task<IEnumerable<Product>> GetAll()
         {
-            var a = await repository.GetAllAsync();
-
-            return true;
+            var products = await repository.GetAllAsync();
+            return products;
         }
 
         [HttpPost]

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManagement.Domain", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManagement.Infra", "StoreManagement.Infra\StoreManagement.Infra.csproj", "{E9F21E00-5342-43F0-B226-BF7CD5BD6CBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManagement.Communication", "StoreManagement.Communication\StoreManagement.Communication.csproj", "{EACED882-B553-4354-B18C-4A42E6F298A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E9F21E00-5342-43F0-B226-BF7CD5BD6CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9F21E00-5342-43F0-B226-BF7CD5BD6CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9F21E00-5342-43F0-B226-BF7CD5BD6CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EACED882-B553-4354-B18C-4A42E6F298A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EACED882-B553-4354-B18C-4A42E6F298A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EACED882-B553-4354-B18C-4A42E6F298A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EACED882-B553-4354-B18C-4A42E6F298A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
