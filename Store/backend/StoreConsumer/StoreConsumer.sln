@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreConsumer", "StoreConsumer.csproj", "{1B35B771-0A54-4F27-9501-DB49FDA1E475}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreConsumer.WebApi", "StoreConsumer.WebApi.csproj", "{1B35B771-0A54-4F27-9501-DB49FDA1E475}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreConsumer.Domain", "..\StoreConsumer.Domain\StoreConsumer.Domain.csproj", "{E47030CF-5C1F-446C-BE1E-EA37B8B964AD}"
 EndProject
