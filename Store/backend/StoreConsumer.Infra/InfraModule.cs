@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using StoreConsumer.Infra.Data;
 using StoreConsumer.Infra.Data.Interfaces;
 using StoreConsumer.Infra.Data.Repositories;
@@ -16,6 +18,15 @@ namespace StoreConsumer.Infra
 
             // Repositories
             services.AddScoped<IProductRepository, ProductRepository>();
+        }
+
+        public static void ConfigureContext(this IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<StoreConsumerDbContext>();
+                context.Database.Migrate();
+            }
         }
     }
 }

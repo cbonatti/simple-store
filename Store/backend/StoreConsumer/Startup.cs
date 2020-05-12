@@ -43,6 +43,8 @@ namespace StoreConsumer
             {
                 endpoints.MapControllers();
             });
+
+            app.ConfigureContext();
         }
     }
 }
