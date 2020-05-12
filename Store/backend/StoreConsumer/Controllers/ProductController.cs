@@ -18,6 +18,14 @@ namespace StoreConsumer.Controllers
             this.repository = repository;
         }
 
+        [HttpGet]
+        public async Task<bool> Teste()
+        {
+            var a = await repository.GetAllAsync();
+
+            return true;
+        }
+
         [HttpPost]
         public async Task<bool> Post([FromBody]ProductDTO dto)
         {
